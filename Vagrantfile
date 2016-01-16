@@ -24,6 +24,6 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.provision "docker" do |docker|
-    docker.pull_images  "registry"
+    docker.pull_images  "registry:2.2.1"
   end
 end

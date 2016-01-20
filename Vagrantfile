@@ -36,6 +36,6 @@ Vagrant.configure(2) do |config|
       image: "registry:2.2.1",
       cmd: "/var/lib/registry/insecure_config.yml",
       daemonize: true,
-      args: "-p 5000:5000 -v /data:/var/lib/registry"
+      args: "-p 80:5000 -v /data:/var/lib/registry"
   end
 end

@@ -25,13 +25,17 @@ Vagrant.configure(2) do |config|
     if [ ! -d "/data" ]; then
       mkdir /data
     fi
+    if [ ! -f "/data/insecure_config.yml" ]; then
+      cp /vagrant/insecure_config.yml /data
+    fi
     EOF
   end
 
   config.vm.provision "docker" do |docker|
     docker.run "v2-mirror",
       image: "registry:2.2.1",
+      cmd: "/var/lib/registry/insecure_config.yml",
       daemonize: true,
-      args: "-p 5000:5000 -v /data:/var/lib/registry -v /vagrant/insecure_config.yml:/etc/docker/registry/config.yml"
+      args: "-p 5000:5000 -v /data:/var/lib/registry"
   end
 end
